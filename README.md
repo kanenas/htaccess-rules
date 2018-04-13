@@ -1,1 +1,1 @@
-# htaccess-rules
+# .htaccess Rules
