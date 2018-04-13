@@ -1,0 +1,8 @@
+<IfModule mod_rewrite.c>
+# Redirect all traffic to https://www
+RewriteEngine On
+RewriteCond %{HTTP_HOST} !^www\. [NC]
+RewriteRule .* https://www.%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+RewriteCond %{HTTPS} off
+RewriteRule .* https://%{HTTP_HOST}%{REQUEST_URI} [NE,L,R=301]
+</IfModule>
