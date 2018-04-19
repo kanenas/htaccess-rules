@@ -14,3 +14,33 @@ RewriteCond %{HTTPS} off [OR]
 RewriteCond %{HTTP_HOST} !^www\. [NC]
 RewriteRule (.*) https://www.example.com%{REQUEST_URI} [NE,L,R=301]
 </IfModule>
+
+## Enable compression
+SetOutputFilter DEFLATE
+
+<FilesMatch "\.(css|js)$">
+Header set Cache-Control "max-age=1209600, public, must-revalidate"
+</FilesMatch>
+
+<IfModule mod_expires.c>
+ExpiresActive On
+ExpiresByType image/jpg "access 2 month"
+ExpiresByType image/gif "access 2 month"
+ExpiresByType image/jpg "access 2 month"
+ExpiresByType image/jpeg "access 2 month"
+ExpiresByType image/png "access 2 month"
+ExpiresByType text/css "access 2 month"
+ExpiresByType application/x-javascript "access plus 2 month"
+ExpiresByType text/javascript "access plus 2 month"
+ExpiresByType application/javascript "access plus 2 month"
+ExpiresByType image/x-icon "access plus 12 month"
+ExpiresByType image/icon "access plus 12 month"
+ExpiresByType application/x-ico "access plus 12 month"
+ExpiresByType application/ico "access plus 12 month"
+</IfModule>
+## EXPIRES CACHING ##
+
+# Set conenection keep-alive
+<ifModule mod_headers.c>
+Header set Connection keep-alive
+</ifModule>
