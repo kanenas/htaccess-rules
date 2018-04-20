@@ -15,6 +15,14 @@ RewriteCond %{HTTP_HOST} !^www\. [NC]
 RewriteRule (.*) https://www.example.com%{REQUEST_URI} [NE,L,R=301]
 </IfModule>
 
+<IfModule mod_rewrite.c>
+# Redirect all traffic to https:// non www
+RewriteEngine on
+RewriteCond %{HTTPS} off [OR]
+RewriteCond %{HTTP_HOST} ^www\. [NC]
+RewriteRule (.*) https://example.com%{REQUEST_URI} [R=301,L]
+</IfModule>
+
 ## Enable compression
 SetOutputFilter DEFLATE
 
