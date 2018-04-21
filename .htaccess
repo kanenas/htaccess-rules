@@ -52,3 +52,34 @@ ExpiresByType application/ico "access plus 12 month"
 <ifModule mod_headers.c>
 Header set Connection keep-alive
 </ifModule>
+
+<Files ~ "^.*\.([Hh][Tt][Aa])">
+Order allow,deny
+Deny from all
+satisfy all
+</Files>
+
+<Files readme.html>
+Order allow,deny
+Deny from all
+</Files>
+
+<Files readme.txt>
+Order allow,deny
+Deny from all
+</Files>
+
+<Files install.php>
+Order allow,deny
+Deny from all
+</Files>
+
+<Files wp-config.php>
+Order allow,deny
+Deny from all
+</Files>
+
+<Files debug.log>
+Order allow,deny
+Deny from all
+</Files>
