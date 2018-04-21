@@ -23,6 +23,12 @@ RewriteCond %{HTTP_HOST} ^www\. [NC]
 RewriteRule (.*) https://example.com%{REQUEST_URI} [R=301,L]
 </IfModule>
 
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteCond %{HTTP:X-Forwarded-Proto} =http
+RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+</IfModule>
+
 ## Enable compression
 SetOutputFilter DEFLATE
 
