@@ -246,6 +246,11 @@ AddType application/zip .zip
 ## Enable compression
 SetOutputFilter DEFLATE
 
+<FilesMatch "\.(ico|pdf|flv|jpg|jpeg|png|gif|js|css|swf)(\.gz)?$">
+Header unset ETag
+FileETag None
+</FilesMatch>
+
 <FilesMatch "\.(ico|pdf|flv|jpg|jpeg|png|gif|js|css|swf)$">
 Header set Cache-Control "max-age=31536000, public, must-revalidate"
 </FilesMatch>
