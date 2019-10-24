@@ -191,6 +191,11 @@ ExpiresByType application/ico "access plus 1 year"
 Header set Connection keep-alive
 </ifModule>
 
+# Security related. Block browser access to log files
+<Files  ~ "\.log$">
+  Order allow,deny
+</Files>
+
 <Files ~ "^.*\.([Hh][Tt][Aa])">
 Order allow,deny
 Deny from all
