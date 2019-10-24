@@ -1,0 +1,5 @@
+<FilesMatch "\.(php|twig|txt)$">
+Order Deny,Allow
+Deny from all
+Allow from "your ip address"
+</FilesMatch>
