@@ -222,7 +222,20 @@ Order allow,deny
 Deny from all
 </Files>
 
+<Files wp-login.php>
+order deny,allow
+Deny from all 
+# whitelist custom IP address
+allow from xxx.xxx.xxx.xxx
+</Files>
+
 <Files debug.log>
 Order allow,deny
 Deny from all
 </Files>
+
+/wp-admin/.htaccess
+order deny,allow
+Deny from all 
+# whitelist custom IP address
+allow from xxx.xxx.xxx.xxx
