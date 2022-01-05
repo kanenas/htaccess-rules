@@ -51,6 +51,10 @@ RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
   Header set X-XSS-Protection "1; mode=block"
 </IfModule>
 
+<IfModule mod_headers.c>
+  Header always append X-Frame-Options SAMEORIGIN
+</IfModule>
+
 # Block Common Malicious Bot Queries
 <IfModule mod_rewrite.c>
 RewriteCond %{QUERY_STRING} http\:\/\/www\.google\.com\/humans\.txt\? [NC,OR]
