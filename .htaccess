@@ -39,41 +39,16 @@ RewriteCond %{HTTP:X-Forwarded-Proto} =http
 RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 </IfModule>
 
-# Security related. May help against some types of drive-by-downloads
-# Read more: https://www.owasp.org/index.php/List_of_useful_HTTP_headers
+# Security related
 <IfModule mod_headers.c>
   Header set X-Content-Type-Options nosniff
-</IfModule>
-
-# Security related. May help against some types of cross-site scripting attacks
-# Read more: https://www.owasp.org/index.php/List_of_useful_HTTP_headers
-<IfModule mod_headers.c>
   Header set X-XSS-Protection "1; mode=block"
-</IfModule>
-
-# Read more: https://htaccessbook.com/important-security-headers/
-<IfModule mod_headers.c>
   Header always append X-Frame-Options SAMEORIGIN
-</IfModule>
-
-<IfModule mod_headers.c>
   Header set X-Permitted-Cross-Domain-Policies "none"
-<IfModule mod_headers.c>
-
-<IfModule mod_headers.c>
   Header set Strict-Transport-Security "max-age=31536000; includeSubDomains; preload"
-<IfModule mod_headers.c>
-
-<IfModule mod_headers.c>
   Header set Content-Security-Policy "default-src * data:; script-src https: 'unsafe-inline' 'unsafe-eval'; style-src https: 'unsafe-inline'"
-<IfModule mod_headers.c>
-
-<IfModule mod_headers.c>
   Header set Referrer-Policy "no-referrer-when-downgrade"
-<IfModule mod_headers.c>
-
-<IfModule mod_headers.c>
-  Header set Feature-Policy "camera 'none'; fullscreen 'self'; geolocation *; microphone 'self' https://www.example.com/*"
+  Header always set Permissions-Policy "geolocation=(),camera=(),microphone=(),fullscreen=(self)"
 <IfModule mod_headers.c>
 
 # Block Common Malicious Bot Queries
