@@ -39,7 +39,7 @@ RewriteCond %{HTTP:X-Forwarded-Proto} =http
 RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 </IfModule>
 
-# Security related
+# Security related headers
 <IfModule mod_headers.c>
   Header set X-Content-Type-Options nosniff
   Header set X-XSS-Protection "1; mode=block"
