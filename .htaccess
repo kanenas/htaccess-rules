@@ -122,6 +122,7 @@ AddType image/gif .gif
 AddType application/x-gzip .gz .gzip
 AddType image/x-icon .ico
 AddType image/jpeg .jpg .jpeg .jpe
+AddType image/webp
 AddType application/json .json
 AddType application/vnd.ms-access .mdb
 AddType audio/midi .mid .midi
@@ -160,12 +161,12 @@ AddType application/zip .zip
 ## Enable compression
 SetOutputFilter DEFLATE
 
-<FilesMatch "\.(ico|pdf|flv|jpg|jpeg|png|gif|js|css|swf)(\.gz)?$">
+<FilesMatch "\.(ico|pdf|flv|jpg|jpeg|png|gif|webp|js|css|swf)(\.gz)?$">
 Header unset ETag
 FileETag None
 </FilesMatch>
 
-<FilesMatch "\.(ico|pdf|flv|jpg|jpeg|png|gif|js|css|swf)$">
+<FilesMatch "\.(ico|pdf|flv|jpg|jpeg|png|gif|webp|js|css|swf)$">
 Header set Cache-Control "max-age=31536000, public, must-revalidate"
 </FilesMatch>
 
@@ -176,6 +177,7 @@ ExpiresByType image/gif "access plus 1 year"
 ExpiresByType image/jpg "access plus 1 year"
 ExpiresByType image/jpeg "access plus 1 year"
 ExpiresByType image/png "access plus 1 year"
+ExpiresByType image/webp "access plus 1 year"
 ExpiresByType text/css "access plus 1 year"
 ExpiresByType application/x-javascript "access plus 1 year"
 ExpiresByType text/javascript "access plus 1 year"
