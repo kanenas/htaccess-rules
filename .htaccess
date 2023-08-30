@@ -49,7 +49,7 @@ RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
   Header set Content-Security-Policy "default-src * data:; script-src https: 'unsafe-inline' 'unsafe-eval'; style-src https: 'unsafe-inline'"
   Header set Referrer-Policy "no-referrer-when-downgrade"
   Header always set Permissions-Policy "geolocation=(),camera=(),microphone=(),fullscreen=(self)"
-<IfModule mod_headers.c>
+</IfModule>
 
 # Block Common Malicious Bot Queries
 <IfModule mod_rewrite.c>
