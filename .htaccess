@@ -1,3 +1,13 @@
+# Block specific bots
+RewriteCond %{HTTP_USER_AGENT} MJ12Bot [NC,OR]
+RewriteCond %{HTTP_USER_AGENT} PetalBot [NC,OR]
+RewriteCond %{HTTP_USER_AGENT} AspiegelBot [NC,OR]
+RewriteCond %{HTTP_USER_AGENT} DotBot [NC,OR]
+RewriteCond %{HTTP_USER_AGENT} YandexBot [NC,OR]
+RewriteCond %{HTTP_USER_AGENT} FullStoryBot [NC,OR]
+RewriteCond %{HTTP_USER_AGENT} MauiBot [NC]
+RewriteRule .* - [F,L]
+
 <IfModule mod_rewrite.c>
 # Redirect all traffic to https://www
 RewriteEngine On
