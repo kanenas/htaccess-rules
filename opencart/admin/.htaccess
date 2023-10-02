@@ -1,3 +1,6 @@
+#Have little fun by sending every deny user to youtube 
+ErrorDocument 403 https://www.youtube.com/watch?v=dQw4w9WgXcQ
+
 Order Deny,Allow
 Deny from all
 Allow from "your ip address"
