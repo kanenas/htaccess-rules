@@ -255,3 +255,27 @@ allow from xxx.xxx.xxx.xxx
   AddHandler application/x-httpd-ea-php74___lsphp .php .php7 .phtml
 </IfModule>
 # php -- END cPanel-generated handler, do not edit
+
+### LITESPEED_CACHE_START - Do not remove this line
+<IfModule LiteSpeed>
+CacheLookup on
+## Uncomment the following directives if you has a separate mobile view
+RewriteEngine On
+RewriteCond %{HTTP_USER_AGENT} "iPhone|iPod|BlackBerry|Palm|Googlebot-Mobile|Mobile|mobile|mobi|Windows Mobile|Safari Mobile|Android|Opera Mini" [NC] 
+RewriteRule .* - [E=Cache-Control:vary=isMobile]
+## Uncomment the following directives if you has a separate Safari browser view
+##RewriteCond %{HTTP_USER_AGENT} Safari
+##RewriteCond %{HTTP_USER_AGENT} !Chrome
+##RewriteCond %{HTTP_USER_AGENT} !CriOS
+##RewriteRule .* - [E=Cache-Control:vary=isSafari]
+##RewriteCond %{HTTP_USER_AGENT} "iPhone|iPod|BlackBerry|Palm|Googlebot-Mobile|Mobile|mobile|mobi|Windows Mobile|Safari Mobile|Android|Opera Mini" [NC]
+##RewriteCond %{HTTP_USER_AGENT} Safari
+##RewriteCond %{HTTP_USER_AGENT} !Chrome
+##RewriteCond %{HTTP_USER_AGENT} !CriOS
+##RewriteRule .* - [E=Cache-Control:vary=isMobileSafari]
+## Uncomment the following directives only if enabled GUI Option of Separate Cache Copy for Mobile Device, "yoursite.domain" need to be changed
+##RewriteCond %{HTTP_USER_AGENT} "iPhone|iPod|BlackBerry|Palm|Googlebot-Mobile|Mobile|mobile|mobi|Windows Mobile|Safari Mobile|Android|Opera Mini" [NC] 
+##RewriteCond %{HTTP_USER_AGENT} Bot
+##RewriteRule .* - [CO=_lscache_vary:device&3Amobile:.yoursite.domain:0:/]
+</IfModule>
+### LITESPEED_CACHE_END
