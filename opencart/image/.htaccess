@@ -1,0 +1,5 @@
+<FilesMatch "\.(php|phtml|phar|php5|php7|php8)$">
+    Require all denied
+</FilesMatch>
+
+php_flag engine off
