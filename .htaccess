@@ -248,6 +248,11 @@ Deny from all
 # whitelist custom IP address
 allow from xxx.xxx.xxx.xxx
 
+# WordPress /wp-content/uploads/
+<Files "*.php">
+  Require all denied
+</Files>
+
 ### Litespeed server or lsaspi ?!?!
 # php -- BEGIN cPanel-generated handler, do not edit
 # Set the “ea-php74” package as the default “PHP” programming language.
