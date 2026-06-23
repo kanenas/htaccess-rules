@@ -51,6 +51,55 @@ RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
   Header always set Permissions-Policy "geolocation=(),camera=(),microphone=(),fullscreen=(self)"
 </IfModule>
 
+# Security related headers (advanced)
+<IfModule mod_headers.c>
+    Header set X-Content-Type-Options nosniff
+    Header set X-XSS-Protection "1; mode=block"
+    Header always append X-Frame-Options SAMEORIGIN
+    Header set X-Permitted-Cross-Domain-Policies "none"
+    Header set Strict-Transport-Security "max-age=31536000; includeSubDomains; preload"
+    Header set Referrer-Policy "no-referrer-when-downgrade"
+    Header always set Permissions-Policy "geolocation=(self),camera=(),microphone=(),fullscreen=(self)"
+
+    Header always set Content-Security-Policy "\
+        default-src 'self';\
+        script-src 'self' 'unsafe-inline' data: \
+            https://www.google-analytics.com \
+            https://www.googletagmanager.com \
+            https://www.gstatic.com \
+            https://www.google.com \
+            https://www.recaptcha.net \
+            https://cdn-cookieyes.com \
+            https://cdn.trustindex.io;\
+        style-src 'self' 'unsafe-inline' \
+            https://fonts.googleapis.com \
+            https://cdn-cookieyes.com \
+            https://cdn.trustindex.io;\
+        font-src 'self' data: \
+            https://fonts.gstatic.com \
+            https://cdn-cookieyes.com \
+            https://cdn.trustindex.io;\
+        img-src 'self' data: https:;\
+        connect-src 'self' \
+            https://www.google-analytics.com \
+            https://www.googletagmanager.com \
+            https://www.google.com \
+            https://ad.doubleclick.net \
+            https://cdn-cookieyes.com \
+            https://log.cookieyes.com \
+            https://cdn.trustindex.io \
+            https://api.trustindex.io;\
+        frame-src 'self' \
+            https://www.google.com \
+            https://www.recaptcha.net \
+            https://www.youtube.com;\
+        object-src 'none';\
+        base-uri 'self';\
+        form-action 'self';\
+        upgrade-insecure-requests;\
+    "
+</IfModule>
+
 # Block Common Malicious Bot Queries
 <IfModule mod_rewrite.c>
 RewriteCond %{QUERY_STRING} http\:\/\/www\.google\.com\/humans\.txt\? [NC,OR]
