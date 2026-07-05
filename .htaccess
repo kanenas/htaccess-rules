@@ -68,6 +68,7 @@ RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
             https://www.googletagmanager.com \
             https://www.gstatic.com \
             https://www.google.com \
+            https://maps.googleapis.com \
             https://www.recaptcha.net \
             https://cdn-cookieyes.com \
             https://cdn.trustindex.io;\
@@ -84,6 +85,7 @@ RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
             https://www.google-analytics.com \
             https://www.googletagmanager.com \
             https://www.google.com \
+            https://maps.googleapis.com \
             https://ad.doubleclick.net \
             https://cdn-cookieyes.com \
             https://log.cookieyes.com \
@@ -91,6 +93,7 @@ RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
             https://api.trustindex.io;\
         frame-src 'self' \
             https://www.google.com \
+            https://www.google.gr \
             https://www.recaptcha.net \
             https://www.youtube.com;\
         object-src 'none';\
