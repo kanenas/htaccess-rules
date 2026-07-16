@@ -89,6 +89,7 @@ RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
             https://ad.doubleclick.net \
             https://cdn-cookieyes.com \
             https://log.cookieyes.com \
+            https://directory.cookieyes.com \
             https://cdn.trustindex.io \
             https://api.trustindex.io;\
         frame-src 'self' \
@@ -97,6 +98,7 @@ RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
             https://www.recaptcha.net \
             https://www.youtube.com;\
         object-src 'none';\
+        worker-src 'self' blob:;\
         base-uri 'self';\
         form-action 'self';\
         upgrade-insecure-requests;\
