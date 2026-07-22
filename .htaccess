@@ -51,7 +51,7 @@ RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
   Header always set Permissions-Policy "geolocation=(),camera=(),microphone=(),fullscreen=(self)"
 </IfModule>
 
-# Security related headers (advanced)
+# Security related headers (advanced) — KNNS standard block
 <IfModule mod_headers.c>
     Header set X-Content-Type-Options nosniff
     Header set X-XSS-Protection "1; mode=block"
@@ -60,10 +60,10 @@ RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
     Header set Strict-Transport-Security "max-age=31536000; includeSubDomains; preload"
     Header set Referrer-Policy "no-referrer-when-downgrade"
     Header always set Permissions-Policy "geolocation=(self),camera=(),microphone=(),fullscreen=(self)"
-
     Header always set Content-Security-Policy "\
         default-src 'self';\
         script-src 'self' 'unsafe-inline' 'unsafe-eval' data: \
+            https://cdnjs.cloudflare.com \
             https://www.google-analytics.com \
             https://www.googletagmanager.com \
             https://www.gstatic.com \
@@ -71,11 +71,20 @@ RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
             https://maps.googleapis.com \
             https://www.recaptcha.net \
             https://cdn-cookieyes.com \
-            https://cdn.trustindex.io;\
+            https://cdn.trustindex.io \
+            https://ajax.googleapis.com \
+            https://unpkg.com \
+            https://elfsightcdn.com \
+            https://static.elfsight.com \
+            https://cdn.jsdelivr.net \
+            https://ibanke-commerce.nbg.gr;\
         style-src 'self' 'unsafe-inline' \
             https://fonts.googleapis.com \
             https://cdn-cookieyes.com \
-            https://cdn.trustindex.io;\
+            https://cdn.trustindex.io \
+            https://elfsightcdn.com \
+            https://unpkg.com \
+            https://cdn.jsdelivr.net;\
         font-src 'self' data: \
             https://fonts.gstatic.com \
             https://cdn-cookieyes.com \
@@ -91,16 +100,22 @@ RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
             https://log.cookieyes.com \
             https://directory.cookieyes.com \
             https://cdn.trustindex.io \
-            https://api.trustindex.io;\
+            https://api.trustindex.io \
+            https://core.service.elfsight.com \
+            https://api.elfsight.com \
+            https://widget-data.service.elfsight.com \
+            https://*.service.elfsight.com \
+            https://ibanke-commerce.nbg.gr;\
         frame-src 'self' \
             https://www.google.com \
             https://www.google.gr \
             https://www.recaptcha.net \
-            https://www.youtube.com;\
+            https://www.youtube.com \
+            https://ibanke-commerce.nbg.gr;\
         object-src 'none';\
         worker-src 'self' blob:;\
         base-uri 'self';\
-        form-action 'self';\
+        form-action 'self' https://ibanke-commerce.nbg.gr;\
         upgrade-insecure-requests;\
     "
 </IfModule>
