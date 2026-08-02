@@ -51,7 +51,7 @@ RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
   Header always set Permissions-Policy "geolocation=(),camera=(),microphone=(),fullscreen=(self)"
 </IfModule>
 
-# Security related headers (advanced) — KNNS standard block
+# Security related headers (advanced) — knns standard block
 <IfModule mod_headers.c>
     Header set X-Content-Type-Options nosniff
     Header set X-XSS-Protection "1; mode=block"
