@@ -119,6 +119,21 @@ RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
     "
 </IfModule>
 
+# === BLOCK: Contabo scraper VPS - added 2026-08-07 ===
+# Catalogue scraper harvesting products via product/search by SKU/MPN.
+# 5x Contabo (DE) VPS, one headless-Chrome UA each; was 66% of ALL site searches.
+# Sits ahead of 7G and OpenCart so blocked requests never reach PHP.
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteCond %{REMOTE_ADDR} ^194\.163\.172\.204$ [OR]
+RewriteCond %{REMOTE_ADDR} ^84\.247\.189\.214$ [OR]
+RewriteCond %{REMOTE_ADDR} ^95\.111\.234\.213$ [OR]
+RewriteCond %{REMOTE_ADDR} ^213\.199\.42\.237$ [OR]
+RewriteCond %{REMOTE_ADDR} ^80\.241\.222\.115$
+RewriteRule .* - [F,L]
+</IfModule>
+# === BLOCK: end Contabo scraper ===
+
 # === BLOCK: faceted-URL botnet - added 2026-09-29 ===
 # Distributed scraper (~58k IPs/day, mostly CN mobile ranges, rotating old Chrome UAs,
 # no referer, never loads CSS/JS) crawling endless ";tag;/;page;/;limit;" permutations.
