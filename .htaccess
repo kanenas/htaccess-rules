@@ -119,6 +119,20 @@ RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
     "
 </IfModule>
 
+# === BLOCK: faceted-URL botnet - added 2026-09-29 ===
+# Distributed scraper (~58k IPs/day, mostly CN mobile ranges, rotating old Chrome UAs,
+# no referer, never loads CSS/JS) crawling endless ";tag;/;page;/;limit;" permutations.
+# These URLs are already Disallowed in robots.txt; real visitors reach them via
+# on-site links (with a Referer), so only referer-less hits are refused.
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteCond %{REQUEST_URI} ;(tag|page|limit|sort|order); [NC]
+RewriteCond %{HTTP_REFERER} ^-?$
+RewriteCond %{HTTP_USER_AGENT} !(Googlebot|AdsBot-Google|bingbot) [NC]
+RewriteRule .* - [F,L]
+</IfModule>
+# === BLOCK: end faceted-URL botnet ===
+
 # Block Common Malicious Bot Queries
 <IfModule mod_rewrite.c>
 RewriteCond %{QUERY_STRING} http\:\/\/www\.google\.com\/humans\.txt\? [NC,OR]
