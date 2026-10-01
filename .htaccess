@@ -122,7 +122,7 @@ RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 # === BLOCK: Contabo scraper VPS - added 2026-08-07 ===
 # Catalogue scraper harvesting products via product/search by SKU/MPN.
 # 5x Contabo (DE) VPS, one headless-Chrome UA each; was 66% of ALL site searches.
-# Sits ahead of 7G and OpenCart so blocked requests never reach PHP.
+# Sits ahead of 8G and OpenCart so blocked requests never reach PHP.
 <IfModule mod_rewrite.c>
 RewriteEngine On
 RewriteCond %{REMOTE_ADDR} ^194\.163\.172\.204$ [OR]
